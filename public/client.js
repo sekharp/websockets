@@ -8,17 +8,24 @@ var voteCount = document.getElementById('vote-count');
 
 var yourVote = document.getElementById('your-vote');
 
+var aVotes = document.getElementById('a-votes')
+var bVotes = document.getElementById('b-votes')
+var cVotes = document.getElementById('c-votes')
+var dVotes = document.getElementById('d-votes')
+
 socket.on('usersConnected', function (count) {
   connectionCount.innerText = 'Connected Users: ' + count;
 });
 
 socket.on('voteCount', function (votes) {
-  voteCount.innerHTML = 'Current Vote Tally: <br/>' +
-  JSON.stringify(votes);
+  aVotes.innerHTML = votes["A"]
+  bVotes.innerHTML = votes["B"];
+  cVotes.innerHTML = votes["C"];
+  dVotes.innerHTML = votes["D"];
 });
 
 socket.on('yourVote', function (message) {
-  yourVote.innerHTML = '<br/><br/> Your Vote has been cast for ' + message;
+  yourVote.innerHTML = '<br/><br/><h2>Your Vote has been cast for ' + message + '</h2><br/><br/>';
 });
 
 var buttons = document.querySelectorAll('#choices button');
